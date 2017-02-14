@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+   <title>Belajar Vue</title>
+</head>
+<body>
+
+   <div id="app">
+      {{hello}}
+   </div>
+   <hr>
+
+   <div id="app2">
+      <span v-bind:title="bindcuy">
+         Hover kadieu
+      </span>
+   </div>
+   <hr>
+
+   <div id="app3">
+      <p v-if="seen">
+         Now you see me
+      </p>
+   </div>
+   <hr>
+
+   <div id="app4">
+      <ol>
+         <li v-for="todo in todos">
+            {{ todo.text }}
+         </li>
+      </ol>
+   </div>
+   <hr>
+
+   <div id="app5">
+      <p>{{ text }}</p>
+      <button v-on:click="reverseText">Reverse Text</button>
+   </div>
+
+   <comp1></comp1>
+
+   <div id="app6">
+      <a v-bind:href="http">asdasd</a>
+      <a @click="com">asdasdsd</a>
+      <a v-bind:href="url">zxczxc</a>
+   </div>
+   <hr>
+
+   <div id="app7">
+      <p>Original : {{ text }}</p>
+      <p>Reverse  : {{ reverseText() }}</p>
+   </div>
+   <hr>
+
+   <div id="app8">
+      <p>{{ datecuy }}</p>
+   </div>
+   <div id="app9">
+      <p>{{ fullName }}</p>
+   </div>
+   <ol>
+  <!-- Create an instance of the todo-item component -->
+  <todo-item></todo-item>
+</ol>
+
+   <script src="https://unpkg.com/jquery@3.1.1"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+   <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+   <script>
+      var app = new Vue({
+         el: '#app',
+         data : {
+            hello : 'hello'
+         }
+      });
+
+      var app2 = new Vue({
+         el: '#app2',
+         data: {
+            bindcuy: "Cie cie bisa " + new Date()
+         }
+      })
+
+      var app3 = new Vue({
+         el: '#app3',
+         data: {
+            seen : true
+         }
+      })
+
+      var app4 = new Vue({
+         el: '#app4',
+         data: {
+            todos : [
+               {text: 'cie 1'},
+               {text: 'cie 2'},
+               {text: 'cie 3'}
+            ]
+         }
+      })
+
+      var app5 = new Vue({
+         el: '#app5',
+         data : {
+            text: "Daulat"
+         },
+         methods: {
+            reverseText: function(){
+               this.text = this.text.split('').reverse().join('')
+            }
+         }
+      })
+
+      Vue.component('comp1', {
+         template : '<p>Coba component c</p>'
+      })
+
+      var app7 = new Vue({
+         el: '#app7',
+         data : {
+            text : 'Daulat'
+         },
+         // computed: {
+         //    reverseText: function() {
+         //       return this.text.split('').reverse().join('')
+         //    }
+         // }
+         // kali make computed ga usah pake (). karena bukan method
+         methods: {
+            reverseText: function() {
+               return this.text.split('').reverse().join('')
+            }
+         }
+      })
+      var app8 = new Vue({
+         el: '#app8',
+         computed: {
+            datecuy: function() {
+               return Date.now()
+            }
+         }
+      })
+      var app9 = new Vue({
+         el: '#app9',
+         data: {
+            firstName: 'Daulat',
+            lastName: 'Rachmanto',
+            // fullName: 'Daulat Rachmanto'
+         },
+         computed: {
+            fullName : function() {
+               return this.firstName + ' ' + this.lastName
+            }
+         }
+      })
+   </script>
+
+
+</body>
+</html>
